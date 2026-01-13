@@ -1,12 +1,12 @@
-name: IPTV-Auto-Enhanced
+name: IPTV-Super-Enhanced
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */4 * * *' # 每 4 小时运行一次，保持源新鲜
   workflow_dispatch:
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,16 +17,16 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pip install requests
 
-      - name: Run Script
+      - name: Run Update
         run: python update_live.py
 
-      - name: Commit changes
+      - name: Commit and Push
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add live_all.m3u
-          git commit -m "Auto-update: Cleaned and filtered [$(date)]" || exit 0
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+          git add live_all.m3u epg.xml
+          git commit -m "Updated Live sources and EPG [$(date)]" || exit 0
           git push
