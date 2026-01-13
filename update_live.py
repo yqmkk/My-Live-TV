@@ -4,25 +4,25 @@ import concurrent.futures
 import time
 
 # --- 配置区 ---
-# 集合了全网最稳的几个源，包含 4K、央视、卫视、数字、地方台
+# 增加了更多高质量源仓库
 SOURCES = [
     "https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8",
     "https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u",
     "https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u",
     "https://raw.githubusercontent.com/Guovern/tv-list/main/m3u/chinatv.m3u",
-    "https://raw.githubusercontent.com/billy21/Tvlist-awesome-m3u-m3u8/master/m3u/migu.m3u"
+    "https://raw.githubusercontent.com/joevess/IPTV/main/sources/iptv_sources.m3u"
 ]
 
 EPG_SOURCE = "http://epg.51zmt.top:8000/e.xml"
 LOGO_BASE = "https://live.fanmingming.com/tv/"
-TIMEOUT = 2  # 严格限制：2秒内不响应就剔除
-MAX_WORKERS = 100 # 提高并发量，加快检测速度
+TIMEOUT = 2  # 超过2秒的源不要，保证流畅度
+MAX_WORKERS = 80 
 
 def clean_channel_name(name):
+    """标准化频道名，这是关联单独节目单的关键"""
     name = name.upper()
-    name = re.sub(r'\[.*?\]|（.*?）|\(.*?\)', '', name)
-    name = re.sub(r'高清|标清|HD|SD|频道|字幕|IPV6|IPV4|CCTV-', 'CCTV', name)
-    name = name.replace('-', '').replace(' ', '')
+    name = re.sub(r'\[.*?\]|（.*?）|\(.*?\)|高清|标清|HD|SD|频道|字幕|IPV6|IPV4|-', '', name)
+    name = name.replace(' ', '')
     if "CCTV" in name:
         match = re.search(r'CCTV(\d+)', name)
         if match:
@@ -34,35 +34,27 @@ def clean_channel_name(name):
         elif "MUSIC" in name or "音乐" in name: name = "CCTV-15"
     return name.strip()
 
-def get_metadata(name):
-    group = "地方/其他"
-    if "CCTV" in name: group = "央视频道"
-    elif "卫视" in name: group = "卫视频道"
-    elif any(x in name for x in ["4K", "8K"]): group = "超高清"
-    logo = f"{LOGO_BASE}{name}.png"
-    return group, logo
-
 def check_url(channel):
     name, url = channel
     std_name = clean_channel_name(name)
-    group, logo = get_metadata(std_name)
     try:
         start_time = time.time()
-        # 增加 headers 模拟播放器，防止被屏蔽
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        # 模拟真实播放器 User-Agent
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) TiviMate/4.7.0'}
         response = requests.get(url, timeout=TIMEOUT, stream=True, headers=headers)
         if response.status_code == 200:
-            # 只取响应极快的
             if time.time() - start_time < TIMEOUT:
+                group = "央视频道" if "CCTV" in std_name else ("卫视频道" if "卫视" in std_name else "地方/其他")
+                logo = f"{LOGO_BASE}{std_name}.png"
                 return {"name": std_name, "url": url, "group": group, "logo": logo}
     except:
         pass
     return None
 
-def fetch_build_and_epg():
+def main():
     tasks = []
     seen_urls = set()
-    print("正在聚合全网高清源...")
+    print("正在搜刮全网优质直播源...")
     for source in SOURCES:
         try:
             r = requests.get(source, timeout=10)
@@ -79,34 +71,34 @@ def fetch_build_and_epg():
                         seen_urls.add(line)
         except: continue
 
-    print(f"原始链接总数: {len(tasks)}，正在进行极速过滤...")
+    print(f"原始链接: {len(tasks)}，正在筛选流畅源...")
     
     results = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = [executor.submit(check_url, t) for t in tasks]
         for f in concurrent.futures.as_completed(futures):
-            if f.result(): results.append(f.result())
+            res = f.result()
+            if res: results.append(res)
 
-    # 排序
     results.sort(key=lambda x: (x['group'], x['name']))
 
-    # 写入 M3U (引用本地 EPG)
+    # 1. 生成 M3U 文件
     with open("live_all.m3u", "w", encoding="utf-8") as f:
-        f.write(f'#EXTM3U x-tvg-url="https://raw.githubusercontent.com/yqmkk/My-Live-TV/main/epg.xml"\n')
+        f.write(f'#EXTM3U x-tvg-url="https://cdn.jsdelivr.net/gh/yqmkk/My-Live-TV@main/epg.xml"\n')
         for item in results:
+            # tvg-name 必须和 epg.xml 里的频道 ID 匹配
             f.write(f'#EXTINF:-1 tvg-name="{item["name"]}" tvg-logo="{item["logo"]}" group-title="{item["group"]}",{item["name"]}\n')
             f.write(f'{item["url"]}\n')
 
-    # 同步 EPG 节目单到本地
-    print("同步节目单数据...")
+    # 2. 同步并生成专属节目单文件
+    print("正在同步单独订阅的节目单地址...")
     try:
-        epg_data = requests.get(EPG_SOURCE, timeout=30).content
+        epg_resp = requests.get(EPG_SOURCE, timeout=30)
         with open("epg.xml", "wb") as f:
-            f.write(epg_data)
+            f.write(epg_resp.content)
+        print("节目单 epg.xml 已就绪")
     except:
-        print("EPG同步失败，将沿用旧版本")
-
-    print(f"完成！当前有效频道: {len(results)}。")
+        print("节目单同步失败")
 
 if __name__ == "__main__":
-    fetch_build_and_epg()
+    main()
