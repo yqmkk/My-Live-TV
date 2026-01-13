@@ -1,15 +1,15 @@
-name: Auto Update IPTV
+name: IPTV-Auto-Enhanced
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # 每 6 小时自动运行一次
-  workflow_dispatch:      # 允许手动触发
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -20,13 +20,13 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run update script
+      - name: Run Script
         run: python update_live.py
 
-      - name: Commit and Push
+      - name: Commit changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add live_all.m3u
-          git commit -m "Update live sources [$(date)]" || exit 0
+          git commit -m "Auto-update: Cleaned and filtered [$(date)]" || exit 0
           git push
