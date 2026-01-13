@@ -1,9 +1,9 @@
 import requests
 import re
 import concurrent.futures
+import datetime
 
 # --- 配置区 ---
-# 集合全网优质源，可以根据需要继续增加
 SOURCES = [
     "https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8",
     "https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u",
@@ -11,85 +11,115 @@ SOURCES = [
     "https://raw.githubusercontent.com/Guovern/tv-list/main/m3u/chinatv.m3u"
 ]
 
-TIMEOUT = 3  # 测速超时时间（秒）
-MAX_WORKERS = 50  # 并行测速线程数
+EPG_URL = "http://epg.51zmt.top:8000/e.xml"
+LOGO_BASE = "https://live.fanmingming.com/tv/" # 使用常用高清台标库
+
+TIMEOUT = 3
+MAX_WORKERS = 60
+
+def clean_channel_name(name):
+    """标准化频道名称，去除杂质"""
+    name = name.upper()
+    name = re.sub(r'\[.*?\]|（.*?）|\(.*?\)', '', name) # 去除括号内容
+    name = re.sub(r'高清|标清|HD|SD|频道|字幕|IPV6|IPV4', '', name)
+    name = name.replace('-', '').replace(' ', '')
+    
+    # 常见央视缩写修复
+    if "CCTV" in name:
+        match = re.search(r'CCTV(\d+)', name)
+        if match:
+            num = match.group(1)
+            # 特殊处理 CCTV 5+, 17 等
+            if num == "5P": return "CCTV5+"
+            name = f"CCTV-{num}"
+        elif "NEWS" in name or "新闻" in name: name = "CCTV-13"
+        elif "KIDS" in name or "少儿" in name: name = "CCTV-14"
+        elif "MUSIC" in name or "音乐" in name: name = "CCTV-15"
+    
+    return name.strip()
+
+def get_metadata(name):
+    """根据标准名获取组别和台标"""
+    group = "地方/其他"
+    logo = ""
+    
+    if "CCTV" in name:
+        group = "央视频道"
+        logo = f"{LOGO_BASE}{name}.png"
+    elif "卫视" in name:
+        group = "卫视频道"
+        logo = f"{LOGO_BASE}{name}.png"
+    elif any(x in name for x in ["4K", "8K"]):
+        group = "超高清"
+    
+    return group, logo
 
 def check_url(channel):
-    """检测链接是否可用"""
-    name, url, group = channel
+    """测速并返回带元数据的频道信息"""
+    raw_name, url = channel
+    std_name = clean_channel_name(raw_name)
+    group, logo = get_metadata(std_name)
+    
     try:
-        # 使用 HEAD 请求快速检测
         response = requests.head(url, timeout=TIMEOUT, allow_redirects=True)
         if response.status_code == 200:
-            return channel
+            return {
+                "name": std_name,
+                "url": url,
+                "group": group,
+                "logo": logo
+            }
     except:
-        try:
-            # 部分服务器不支持 HEAD，用 GET 尝试获取前几个字节
-            response = requests.get(url, timeout=TIMEOUT, stream=True)
-            if response.status_code == 200:
-                return channel
-        except:
-            pass
+        pass
     return None
 
-def get_group(name):
-    """根据频道名自动归类"""
-    if "CCTV" in name.upper():
-        return "央视频道"
-    elif "卫视" in name:
-        return "卫视频道"
-    elif any(x in name for x in ["4K", "8K", "超高清"]):
-        return "超高清频道"
-    elif any(x in name for x in ["数字", "电影", "剧场"]):
-        return "数字频道"
-    else:
-        return "地方/其他"
-
-def fetch_and_filter():
-    raw_channels = []
+def fetch_and_build():
+    tasks = []
     seen_urls = set()
 
-    print("开始抓取全网源...")
-    for source_url in SOURCES:
+    print("开始获取源数据...")
+    for source in SOURCES:
         try:
-            res = requests.get(source_url, timeout=10)
-            res.encoding = 'utf-8'
-            lines = res.text.split('\n')
-            
+            r = requests.get(source, timeout=10)
+            r.encoding = 'utf-8'
+            lines = r.text.split('\n')
             temp_name = ""
             for line in lines:
                 line = line.strip()
                 if line.startswith("#EXTINF"):
-                    # 提取频道名
-                    name_match = re.search(r',(.+)$', line)
-                    temp_name = name_match.group(1) if name_match else "未知频道"
+                    match = re.search(r',(.+)$', line)
+                    temp_name = match.group(1) if match else ""
                 elif line.startswith("http") and temp_name:
                     if line not in seen_urls:
-                        group = get_group(temp_name)
-                        raw_channels.append((temp_name, line, group))
+                        tasks.append((temp_name, line))
                         seen_urls.add(line)
-        except Exception as e:
-            print(f"抓取 {source_url} 失败: {e}")
+        except:
+            continue
 
-    print(f"抓取完成，共获取 {len(raw_channels)} 条待检测链接。开始并行测速...")
+    print(f"有效原始链接: {len(tasks)}，开始多线程清洗与验证...")
 
-    # 并行测速
-    valid_channels = []
+    results = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        results = list(executor.map(check_url, raw_channels))
-        valid_channels = [r for r in results if r is not None]
+        future_to_url = {executor.submit(check_url, task): task for task in tasks}
+        for future in concurrent.futures.as_completed(future_to_url):
+            res = future.result()
+            if res:
+                results.append(res)
 
-    # 按分类排序
-    valid_channels.sort(key=lambda x: x[2])
+    # 排序：按组别然后按名称
+    results.sort(key=lambda x: (x['group'], x['name']))
 
-    # 写入文件
+    # 写入 M3U
     with open("live_all.m3u", "w", encoding="utf-8") as f:
-        f.write("#EXTM3U x-tvg-url=\"http://epg.51zmt.top:8000/e.xml\"\n")
-        for name, url, group in valid_channels:
-            f.write(f'#EXTINF:-1 group-title="{group}",{name}\n')
-            f.write(f"{url}\n")
-    
-    print(f"任务结束：保留有效链接 {len(valid_channels)} 条，已存入 live_all.m3u")
+        # 写入头部，包含 EPG 声明
+        f.write(f'#EXTM3U x-tvg-url="{EPG_URL}"\n')
+        
+        for item in results:
+            # 写入标准化标签：tvg-name(匹配EPG), tvg-logo(显示台标), group-title(分类)
+            f.write(f'#EXTINF:-1 tvg-name="{item["name"]}" tvg-logo="{item["logo"]}" group-title="{item["group"]}",{item["name"]}\n')
+            f.write(f'{item["url"]}\n')
+
+    print(f"同步完成！生成频道: {len(results)} 个。")
 
 if __name__ == "__main__":
-    fetch_and_filter()
+    fetch_and_build()
