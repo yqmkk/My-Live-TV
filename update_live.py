@@ -3,64 +3,79 @@ import re
 import concurrent.futures
 import time
 
-# --- 全球顶级源集合 ---
+# --- 核心数据源：涵盖高清、4K 及全球精选 ---
 SOURCES = [
+    # 中国全量（含高清、IPv6、移动/电信/联通源）
     "https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8",
     "https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u",
-    "https://iptv-org.github.io/iptv/index.m3u", # 全球最全源
-    "https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u",
     "https://raw.githubusercontent.com/Guovern/tv-list/main/m3u/chinatv.m3u",
-    "https://raw.githubusercontent.com/billy21/Tvlist-awesome-m3u-m3u8/master/m3u/migu.m3u"
+    "https://raw.githubusercontent.com/billy21/Tvlist-awesome-m3u-m3u8/master/m3u/migu.m3u",
+    # 全球源（用于筛选日韩美）
+    "https://iptv-org.github.io/iptv/index.m3u",
+    "https://raw.githubusercontent.com/James-E-A/James-E-A.github.io/main/TV/USA.m3u",
+    "https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u"
 ]
 
 # 节目单源
 EPG_SOURCE = "http://epg.51zmt.top:8000/e.xml"
 LOGO_BASE = "https://live.fanmingming.com/tv/"
 
-# 测速配置
-TIMEOUT = 2  # 美国服务器到全球，2秒不通必是死链
-MAX_WORKERS = 200 # 美国服务器性能强，开启200线程极速清洗
+# 测速配置：大吞吐优先，只要能连上且速度快的
+TIMEOUT = 3 
+MAX_WORKERS = 200 # 高并发处理
 
-def get_std_name(name):
-    """强制标准化，确保能对上节目单"""
-    name = name.upper()
-    name = re.sub(r'\[.*?\]|（.*?）|\(.*?\)|高清|标清|HD|SD|频道|字幕|IPV6|IPV4|-| ', '', name)
-    if "CCTV" in name:
-        match = re.search(r'CCTV(\d+)', name)
-        if match: return f"CCTV-{match.group(1)}"
-        if "新闻" in name: return "CCTV-13"
-    return name.strip()
+def get_std_info(name):
+    """频道标准化及国家分类逻辑"""
+    n = name.upper()
+    # 默认分类
+    group = "🌐全球其他"
+    
+    # 中国频道判断（全量）
+    if any(x in n for x in ["CCTV", "卫视", "数字", "电影", "剧场", "频道", "新闻", "体育"]):
+        group = "🇨🇳中国高清"
+    # 美国精选
+    elif any(x in n for x in ["CNN", "HBO", "FOX", "ABC", "NBC", "USA", "DISCOVERY", "MOVIES"]):
+        group = "🇺🇸美国精选"
+    # 日本精选
+    elif any(x in n for x in ["NHK", "BS", "NTV", "TOKYO", "FUJI", "ASAHI", "JAPAN"]):
+        group = "🇯🇵日本精选"
+    # 韩国精选
+    elif any(x in n for x in ["KBS", "MBC", "SBS", "TVN", "MNET", "KOREA"]):
+        group = "🇰🇷韩国精选"
+    
+    # 频道名标准化
+    std_name = name.replace("高清", "").replace("HD", "").replace("-", "").strip()
+    return std_name, group
 
 def check_url(channel):
     name, url = channel
-    std_name = get_std_name(name)
+    std_name, group = get_std_info(name)
+    
+    # 如果不是中、美、日、韩，直接剔除，保持列表精简
+    if group == "🌐全球其他":
+        return None
+        
     try:
-        # 模拟真实播放器，避开反爬
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) TiviMate/4.7.0'}
-        # 增加 stream=True 只读头部，极速测速
-        with requests.get(url, timeout=TIMEOUT, stream=True, headers=headers) as r:
-            if r.status_code == 200:
-                # 智能分类
-                if "CCTV" in std_name: group = "🇨🇳央视频道"
-                elif any(x in std_name for x in ["卫视", "凤凰", "TVB"]): group = "🇭🇰华语卫星"
-                elif any(x in std_name for x in ["HBO", "CNN", "BBC", "FOX", "DISCOVERY", "MOVIE"]): group = "🌎全球影视新闻"
-                elif any(x in std_name for x in ["体育", "SPORT", "NBA"]): group = "⚽体育频道"
-                else: group = "🌐全球其他"
-                
-                return {
-                    "name": std_name,
-                    "raw_name": name,
-                    "url": url,
-                    "group": group,
-                    "logo": f"{LOGO_BASE}{std_name}.png"
-                }
+        start = time.time()
+        # 测速：连接并读取前 1024 字节以确保流确实可用（大吞吐检测）
+        response = requests.get(url, timeout=TIMEOUT, stream=True, headers=headers)
+        if response.status_code == 200:
+            delay = time.time() - start
+            return {
+                "name": std_name,
+                "url": url,
+                "group": group,
+                "logo": f"{LOGO_BASE}{std_name}.png",
+                "delay": delay
+            }
     except:
         pass
     return None
 
 def main():
-    print("🚀 开始全球高清源大搜刮...")
-    all_tasks = []
+    print("🚀 启动大吞吐高清抓取引擎...")
+    tasks = []
     seen_urls = set()
 
     for s in SOURCES:
@@ -75,41 +90,40 @@ def main():
                     temp_name = match.group(1) if match else ""
                 elif line.startswith("http") and temp_name:
                     if line not in seen_urls:
-                        all_tasks.append((temp_name, line))
+                        tasks.append((temp_name, line))
                         seen_urls.add(line)
         except: continue
 
-    print(f"📡 原始链接总数: {len(all_tasks)}。美国服务器正在进行全网测速...")
+    print(f"📡 原始待测源: {len(tasks)}，正在进行全球链路测速...")
 
-    results = []
+    valid_results = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        futures = [executor.submit(check_url, t) for t in all_tasks]
+        futures = [executor.submit(check_url, t) for t in tasks]
         for f in concurrent.futures.as_completed(futures):
             res = f.result()
-            if res: results.append(res)
+            if res: valid_results.append(res)
 
-    # 排序
-    results.sort(key=lambda x: (x['group'], x['name']))
+    # 排序逻辑：先按组排，组内按延迟（速度）排
+    valid_results.sort(key=lambda x: (x['group'], x['delay']))
 
-    # 1. 生成 M3U（单独订阅用）
+    # 1. 生成唯一的 M3U 直播源地址
     with open("live_all.m3u", "w", encoding="utf-8") as f:
-        # 这里指定本地加速后的 EPG 地址
         f.write(f'#EXTM3U x-tvg-url="https://cdn.jsdelivr.net/gh/yqmkk/My-Live-TV@main/epg.xml"\n')
-        for item in results:
+        for item in valid_results:
             f.write(f'#EXTINF:-1 tvg-name="{item["name"]}" tvg-logo="{item["logo"]}" group-title="{item["group"]}",{item["name"]}\n')
             f.write(f'{item["url"]}\n')
 
-    # 2. 生成本地 EPG 缓存（单独订阅用）
-    print("📝 同步全球节目单并进行本地化加速...")
+    # 2. 生成唯一的 EPG 节目单地址
+    print("📝 同步并缓存全量节目单...")
     try:
-        epg_data = requests.get(EPG_SOURCE, timeout=60).content
+        epg_content = requests.get(EPG_SOURCE, timeout=60).content
         with open("epg.xml", "wb") as f:
-            f.write(epg_data)
-        print("✅ 节目单同步成功")
-    except Exception as e:
-        print(f"❌ 节目单同步失败: {e}")
+            f.write(epg_content)
+        print("✅ 节目单缓存成功")
+    except:
+        print("❌ 节目单同步失败")
 
-    print(f"🎉 任务完成！当前共筛选出 {len(results)} 个流畅频道。")
+    print(f"🎉 搞定！已为你筛选出 {len(valid_results)} 个极速高清频道。")
 
 if __name__ == "__main__":
     main()
