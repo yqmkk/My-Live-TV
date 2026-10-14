@@ -36,9 +36,9 @@ https://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL2.smil/playlist.m3u8
 #EXTINF:-1 tvg-name="CCTV-3" tvg-logo="https://live.fanmingming.com/tv/CCTV-3.png" group-title="🇨🇳中国高清",CCTV-3
 http://74.91.26.218:82/live/cctv3hd.m3u8
 #EXTINF:-1 tvg-name="CCTV-4" tvg-logo="https://live.fanmingming.com/tv/CCTV-4.png" group-title="🇨🇳中国高清",CCTV-4
-http://198.204.240.250:82/live/cctv4k.m3u8
-#EXTINF:-1 tvg-name="CCTV-4" tvg-logo="https://live.fanmingming.com/tv/CCTV-4.png" group-title="🇨🇳中国高清",CCTV-4
 http://74.91.26.218:82/live/cctv4hd.m3u8
+#EXTINF:-1 tvg-name="CCTV-4" tvg-logo="https://live.fanmingming.com/tv/CCTV-4.png" group-title="🇨🇳中国高清",CCTV-4
+http://198.204.240.250:82/live/cctv4k.m3u8
 #EXTINF:-1 tvg-name="CCTV-6" tvg-logo="https://live.fanmingming.com/tv/CCTV-6.png" group-title="🇨🇳中国高清",CCTV-6
 http://69.30.245.50/live/cctv6.m3u8
 #EXTINF:-1 tvg-name="CCTV-7" tvg-logo="https://live.fanmingming.com/tv/CCTV-7.png" group-title="🇨🇳中国高清",CCTV-7
@@ -50,7 +50,7 @@ http://192.151.150.154/live/cctv8k.m3u8
 #EXTINF:-1 tvg-name="CCTV-9" tvg-logo="https://live.fanmingming.com/tv/CCTV-9.png" group-title="🇨🇳中国高清",CCTV-9
 https://xykt-fix.github.io/Y77.m3u8
 #EXTINF:-1 tvg-name="CCTV-9" tvg-logo="https://live.fanmingming.com/tv/CCTV-9.png" group-title="🇨🇳中国高清",CCTV-9
-https://v4-702cae17a28d6e4f0c0002bba021d934.livehwc4.com/play.kankanlive.com/live/1698423397390920.m3u8?sub_m3u8=true&edge_slice=true&user_session_id=6e56c09e91a3a1979ffa738189d2c0ef
+https://v4-e6b1c5baf4e240fe63adbf68dda23435.livehwc4.com/play.kankanlive.com/live/1698423397390920.m3u8?sub_m3u8=true&edge_slice=true&user_session_id=2ce0dc7d98d9fc1c710b7ee690e10938
 #EXTINF:-1 tvg-name="CCTVBILLIARDS" tvg-logo="https://live.fanmingming.com/tv/CCTVBILLIARDS.png" group-title="🇨🇳中国高清",CCTVBILLIARDS
 http://38.75.136.137:98/gslb/dsdqpub/ystq.m3u8?auth=testpub
 #EXTINF:-1 tvg-name="CCTVCULTUREOFQUALITY" tvg-logo="https://live.fanmingming.com/tv/CCTVCULTUREOFQUALITY.png" group-title="🇨🇳中国高清",CCTVCULTUREOFQUALITY
@@ -127,10 +127,6 @@ https://bozztv.com/1gbw5/tintv2/tintv2/playlist.m3u8
 https://edge.essastream.com/aiontelevision/playlist.m3u8
 #EXTINF:-1 tvg-name="AJMANTV" tvg-logo="https://live.fanmingming.com/tv/AJMANTV.png" group-title="🇯🇵日本精选",AJMANTV
 https://cdn1.logichost.in/ajmantv/live/playlist.m3u8
-#EXTINF:-1 tvg-name="ALIMANTV" tvg-logo="https://live.fanmingming.com/tv/ALIMANTV.png" group-title="🇯🇵日本精选",ALIMANTV
-https://svs.itworkscdn.net/alimanlive/imantv.smil/playlist.m3u8
-#EXTINF:-1 tvg-name="ALJAWADAINTV" tvg-logo="https://live.fanmingming.com/tv/ALJAWADAINTV.png" group-title="🇯🇵日本精选",ALJAWADAINTV
-https://live.aljawadain.org/live/aljawadaintv/playlist.m3u8
 #EXTINF:-1 tvg-name="ALMAYADEENTV" tvg-logo="https://live.fanmingming.com/tv/ALMAYADEENTV.png" group-title="🇯🇵日本精选",ALMAYADEENTV
 https://mdnlv.cdn.octivid.com/almdn/smil:mpegts.stream.smil/playlist.m3u8
 #EXTINF:-1 tvg-name="ALRAYYANTV" tvg-logo="https://live.fanmingming.com/tv/ALRAYYANTV.png" group-title="🇯🇵日本精选",ALRAYYANTV
@@ -155,8 +151,12 @@ https://5c7b683162943.streamlock.net/live/ngrp:bahraintvmain_all/playlist.m3u8
 https://stream.iptvservice.eu/hls/balatontv.m3u8
 #EXTINF:-1 tvg-name="BALIKPAPANTV" tvg-logo="https://live.fanmingming.com/tv/BALIKPAPANTV.png" group-title="🇯🇵日本精选",BALIKPAPANTV
 http://122.248.43.242:1935/BALIKPAPANTV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-name="BANTENTV" tvg-logo="https://live.fanmingming.com/tv/BANTENTV.png" group-title="🇯🇵日本精选",BANTENTV
+https://5bf7b725107e5.streamlock.net/bantentv/bantentv/playlist.m3u8
 #EXTINF:-1 tvg-name="BARANTV" tvg-logo="https://live.fanmingming.com/tv/BARANTV.png" group-title="🇯🇵日本精选",BARANTV
 https://ncdn.telewebion.ir/baran/live/playlist.m3u8
+#EXTINF:-1 tvg-name="BAYONTV" tvg-logo="https://live.fanmingming.com/tv/BAYONTV.png" group-title="🇯🇵日本精选",BAYONTV
+https://live-evg2.tv360.metfone.com.kh/livebayontv/bayontvhd.stream/playlist.m3u8
 #EXTINF:-1 tvg-name="BBSTV" tvg-logo="https://live.fanmingming.com/tv/BBSTV.png" group-title="🇯🇵日本精选",BBSTV
 https://bbstv.ug/hls/ch01/index.m3u8
 #EXTINF:-1 tvg-name="BBSTV" tvg-logo="https://live.fanmingming.com/tv/BBSTV.png" group-title="🇯🇵日本精选",BBSTV
@@ -281,6 +281,8 @@ https://cd198.anystream.uk:9092/iqapp/d33ntv/playlist.m3u8
 https://live.we2live.in/dheerantv/dheerantv/playlist.m3u8
 #EXTINF:-1 tvg-name="DIENBIENTV" tvg-logo="https://live.fanmingming.com/tv/DIENBIENTV.png" group-title="🇯🇵日本精选",DIENBIENTV
 https://stream.langsontv.vn/live/2855dfeccb7f49a41a2b0441b3bfeda413c/playlist.m3u8
+#EXTINF:-1 tvg-name="DRAGONTVINTERNATIONAL" tvg-logo="https://live.fanmingming.com/tv/DRAGONTVINTERNATIONAL.png" group-title="🇯🇵日本精选",DRAGONTVINTERNATIONAL
+https://restream.pdtvhd.com/memfs/0b1b95c9-3543-4af9-9fdb-cf45f1602f17.m3u8
 #EXTINF:-1 tvg-name="DUNGEONTV" tvg-logo="https://live.fanmingming.com/tv/DUNGEONTV.png" group-title="🇯🇵日本精选",DUNGEONTV
 https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=2226
 #EXTINF:-1 tvg-name="EBS" tvg-logo="https://live.fanmingming.com/tv/EBS.png" group-title="🇯🇵日本精选",EBS
@@ -447,8 +449,6 @@ https://amg00376-magellan-amg00376c5-samsung-au-1708.playouts.now.amagi.tv/playl
 https://manatv.akamaized.net/120723/smil:magnavision.smil/playlist.m3u8
 #EXTINF:-1 tvg-name="MAHAASINTV" tvg-logo="https://live.fanmingming.com/tv/MAHAASINTV.png" group-title="🇯🇵日本精选",MAHAASINTV
 https://mahaasintv.livebox.co.in/mahaasintvhls/mahaasintv.m3u8
-#EXTINF:-1 tvg-name="MAIMONTVCANAL3" tvg-logo="https://live.fanmingming.com/tv/MAIMONTVCANAL3.png" group-title="🇯🇵日本精选",MAIMONTVCANAL3
-https://tele-stream.telecasa.net/live/st3/maimontv-hd/index.m3u8
 #EXTINF:-1 tvg-name="MAKONTV" tvg-logo="https://live.fanmingming.com/tv/MAKONTV.png" group-title="🇯🇵日本精选",MAKONTV
 https://stream8.cinerama.uz/1497/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="MANORANJANTV" tvg-logo="https://live.fanmingming.com/tv/MANORANJANTV.png" group-title="🇯🇵日本精选",MANORANJANTV
@@ -457,6 +457,8 @@ https://cdn.pishow.tv/ott/live/1013/master.m3u8
 https://video03.logicahost.com.br/maxivisiontv/maxivisiontv/playlist.m3u8
 #EXTINF:-1 tvg-name="MEGATVWSBSTV" tvg-logo="https://live.fanmingming.com/tv/MEGATVWSBSTV.png" group-title="🇯🇵日本精选",MEGATVWSBSTV
 https://mdstrm.com/live-stream-playlist/67ed74e8af482ba71d47fd7b.m3u8
+#EXTINF:-1 tvg-name="MEGAVISIONTV" tvg-logo="https://live.fanmingming.com/tv/MEGAVISIONTV.png" group-title="🇯🇵日本精选",MEGAVISIONTV
+http://server3.prostudionetwork.com:1943/megavision/MV/playlist.m3u8
 #EXTINF:-1 tvg-name="MEKAMELEENTV" tvg-logo="https://live.fanmingming.com/tv/MEKAMELEENTV.png" group-title="🇯🇵日本精选",MEKAMELEENTV
 https://mn-nl.mncdn.com/mekameleen/smil:mekameleentv.smil/playlist.m3u8
 #EXTINF:-1 tvg-name="MERCANTV" tvg-logo="https://live.fanmingming.com/tv/MERCANTV.png" group-title="🇯🇵日本精选",MERCANTV
@@ -492,9 +494,9 @@ https://jmp2.uk/plu-6901d952ec12c3c759fdc7cd.m3u8
 #EXTINF:-1 tvg-name="NHKGENERALTV" tvg-logo="https://live.fanmingming.com/tv/NHKGENERALTV.png" group-title="🇯🇵日本精选",NHKGENERALTV
 https://nhk4.mov3.co/hls/nhk.m3u8
 #EXTINF:-1 tvg-name="NHKWORLDJAPAN" tvg-logo="https://live.fanmingming.com/tv/NHKWORLDJAPAN.png" group-title="🇯🇵日本精选",NHKWORLDJAPAN
-https://masterpl.hls.nhkworld.jp/hls/w/live/smarttv.m3u8
-#EXTINF:-1 tvg-name="NHKWORLDJAPAN" tvg-logo="https://live.fanmingming.com/tv/NHKWORLDJAPAN.png" group-title="🇯🇵日本精选",NHKWORLDJAPAN
 http://170.83.16.50/NHK_WORLD/index.m3u8
+#EXTINF:-1 tvg-name="NHKWORLDJAPAN" tvg-logo="https://live.fanmingming.com/tv/NHKWORLDJAPAN.png" group-title="🇯🇵日本精选",NHKWORLDJAPAN
+https://masterpl.hls.nhkworld.jp/hls/w/live/smarttv.m3u8
 #EXTINF:-1 tvg-name="NHKWORLDPREMIUM" tvg-logo="https://live.fanmingming.com/tv/NHKWORLDPREMIUM.png" group-title="🇯🇵日本精选",NHKWORLDPREMIUM
 https://media-tyo.hls.nhkworld.jp/hls/wp/live/master.m3u8
 #EXTINF:-1 tvg-name="NIEDERBAYERNTV" tvg-logo="https://live.fanmingming.com/tv/NIEDERBAYERNTV.png" group-title="🇯🇵日本精选",NIEDERBAYERNTV
@@ -508,7 +510,7 @@ https://stream03.welocal.stream/stream/fhd-nbypassau_49171/ngrp:stream_all/index
 #EXTINF:-1 tvg-name="NTV" tvg-logo="https://live.fanmingming.com/tv/NTV.png" group-title="🇯🇵日本精选",NTV
 https://2-fss-1.streamhoster.com/pl_122/201748-1431018-1/chunklist.m3u8
 #EXTINF:-1 tvg-name="NTV" tvg-logo="https://live.fanmingming.com/tv/NTV.png" group-title="🇯🇵日本精选",NTV
-https://sunplay-cdn.bitratelabs.com/live/local-channel/ntv-e3d4300b49c8c901e9339174215d7580/index.m3u8
+https://protokolldns.xyz/ntv.l.i.v.e5547892023/index.m3u8
 #EXTINF:-1 tvg-name="NTV1" tvg-logo="https://live.fanmingming.com/tv/NTV1.png" group-title="🇯🇵日本精选",NTV1
 https://cdn.ntv.ru/ntv1/playlist.m3u8
 #EXTINF:-1 tvg-name="NTV2" tvg-logo="https://live.fanmingming.com/tv/NTV2.png" group-title="🇯🇵日本精选",NTV2
@@ -597,8 +599,6 @@ http://122.248.43.242:1935/PONTV/_definst_/myStream/playlist.m3u8
 https://amg01258-raycomsports-powernationau-samsungau-18bwc.amagi.tv/playlist.m3u8
 #EXTINF:-1 tvg-name="POWERVISIONTV" tvg-logo="https://live.fanmingming.com/tv/POWERVISIONTV.png" group-title="🇯🇵日本精选",POWERVISIONTV
 https://mumbai-edge.smartplaytv.in/PowerVision/index.m3u8
-#EXTINF:-1 tvg-name="PUCONTV" tvg-logo="https://live.fanmingming.com/tv/PUCONTV.png" group-title="🇯🇵日本精选",PUCONTV
-https://redirector.dps.live/hls/pucontv/playlist.m3u8
 #EXTINF:-1 tvg-name="QAZVINTV" tvg-logo="https://live.fanmingming.com/tv/QAZVINTV.png" group-title="🇯🇵日本精选",QAZVINTV
 https://ncdn.telewebion.ir/qazvin/live/playlist.m3u8
 #EXTINF:-1 tvg-name="QURANTV" tvg-logo="https://live.fanmingming.com/tv/QURANTV.png" group-title="🇯🇵日本精选",QURANTV
@@ -611,6 +611,8 @@ https://mn-nl.mncdn.com/palabroad/live/playlist.m3u8
 https://live-evg7.tv360.bitel.com.pe/bitel/regiontvSRT/playlist.m3u8
 #EXTINF:-1 tvg-name="RENTVINTERNATIONAL" tvg-logo="https://live.fanmingming.com/tv/RENTVINTERNATIONAL.png" group-title="🇯🇵日本精选",RENTVINTERNATIONAL
 http://178.134.1.158:8081/RENTV/index.m3u8
+#EXTINF:-1 tvg-name="ROCAVISIONTV" tvg-logo="https://live.fanmingming.com/tv/ROCAVISIONTV.png" group-title="🇯🇵日本精选",ROCAVISIONTV
+https://streamunoapp.com:3331/live/rocavisiontvlive.m3u8
 #EXTINF:-1 tvg-name="RONGEENTV" tvg-logo="https://live.fanmingming.com/tv/RONGEENTV.png" group-title="🇯🇵日本精选",RONGEENTV
 https://server.thelegitpro.in/rongeentv/rongeentv/index.m3u8
 #EXTINF:-1 tvg-name="SABALANTV" tvg-logo="https://live.fanmingming.com/tv/SABALANTV.png" group-title="🇯🇵日本精选",SABALANTV
@@ -618,9 +620,9 @@ https://ncdn.telewebion.ir/sabalan/live/playlist.m3u8
 #EXTINF:-1 tvg-name="SALVACIONTV" tvg-logo="https://live.fanmingming.com/tv/SALVACIONTV.png" group-title="🇯🇵日本精选",SALVACIONTV
 https://stream.eleden.com/livesalvatv/ngrp:livesalvatv_all/playlist.m3u8
 #EXTINF:-1 tvg-name="SALVATIONTV" tvg-logo="https://live.fanmingming.com/tv/SALVATIONTV.png" group-title="🇯🇵日本精选",SALVATIONTV
-https://ktismaservers.in:3902/live/salvationtvlive.m3u8
-#EXTINF:-1 tvg-name="SALVATIONTV" tvg-logo="https://live.fanmingming.com/tv/SALVATIONTV.png" group-title="🇯🇵日本精选",SALVATIONTV
 https://viewmedia7219.bozztv.com/wmedia/viewmedia100/web_017/Stream/playlist.m3u8
+#EXTINF:-1 tvg-name="SALVATIONTV" tvg-logo="https://live.fanmingming.com/tv/SALVATIONTV.png" group-title="🇯🇵日本精选",SALVATIONTV
+https://ktismaservers.in:3902/live/salvationtvlive.m3u8
 #EXTINF:-1 tvg-name="SANTVANICHANNEL" tvg-logo="https://live.fanmingming.com/tv/SANTVANICHANNEL.png" group-title="🇯🇵日本精选",SANTVANICHANNEL
 https://d1msejlow1t3l4.cloudfront.net/fta/santwani/playlist.m3u8
 #EXTINF:-1 tvg-name="SARBEDARANTV" tvg-logo="https://live.fanmingming.com/tv/SARBEDARANTV.png" group-title="🇯🇵日本精选",SARBEDARANTV
@@ -643,6 +645,8 @@ http://catchup.videoline.ru/shanson/index.m3u8
 https://cdnbarinas.tvzamora.com/showven/index.m3u8
 #EXTINF:-1 tvg-name="SIVANTV" tvg-logo="https://live.fanmingming.com/tv/SIVANTV.png" group-title="🇯🇵日本精选",SIVANTV
 http://sivantv.livebox.co.in/sivantvhls/sivan.m3u8
+#EXTINF:-1 tvg-name="SOORIYANTV" tvg-logo="https://live.fanmingming.com/tv/SOORIYANTV.png" group-title="🇯🇵日本精选",SOORIYANTV
+https://live20.bozztv.com/giatv/giatv-Infinittyott/Infinittyott/playlist.m3u8
 #EXTINF:-1 tvg-name="SPONGEBOBSCHWAMMKOPF" tvg-logo="https://live.fanmingming.com/tv/SPONGEBOBSCHWAMMKOPF.png" group-title="🇯🇵日本精选",SPONGEBOBSCHWAMMKOPF
 https://jmp2.uk/plu-5d00e8adaab96b5635b2a005.m3u8
 #EXTINF:-1 tvg-name="SPONGEBOBSQUAREPANTS" tvg-logo="https://live.fanmingming.com/tv/SPONGEBOBSQUAREPANTS.png" group-title="🇯🇵日本精选",SPONGEBOBSQUAREPANTS
@@ -671,14 +675,14 @@ https://cdntv.tbs.seoul.kr/tbs/tbs_tv_web.smil/playlist.m3u8
 https://turnerlive.warnermediacdn.com/hls/live/2023174/tbswest/slate/VIDEO_0_3564000.m3u8
 #EXTINF:-1 tvg-name="TEHRANTV" tvg-logo="https://live.fanmingming.com/tv/TEHRANTV.png" group-title="🇯🇵日本精选",TEHRANTV
 https://ncdn.telewebion.ir/tehran/live/playlist.m3u8
+#EXTINF:-1 tvg-name="TELEDAJABONTV" tvg-logo="https://live.fanmingming.com/tv/TELEDAJABONTV.png" group-title="🇯🇵日本精选",TELEDAJABONTV
+https://5790d294af2dc.streamlock.net/dajabon/dajabon/playlist.m3u8
 #EXTINF:-1 tvg-name="THAINGUYENTV" tvg-logo="https://live.fanmingming.com/tv/THAINGUYENTV.png" group-title="🇯🇵日本精选",THAINGUYENTV
 https://streaming.thainguyentv.vn/hls/livestream.m3u8
 #EXTINF:-1 tvg-name="THAIPBS" tvg-logo="https://live.fanmingming.com/tv/THAIPBS.png" group-title="🇯🇵日本精选",THAIPBS
 https://live-us1.thaimomo.com/live-as/chThaipbshd-2/playlist.m3u8
 #EXTINF:-1 tvg-name="TINTV" tvg-logo="https://live.fanmingming.com/tv/TINTV.png" group-title="🇯🇵日本精选",TINTV
 https://tulixcdn.akamaized.net/tintv6/tintv/tintv/playlist.m3u8
-#EXTINF:-1 tvg-name="TONTV" tvg-logo="https://live.fanmingming.com/tv/TONTV.png" group-title="🇯🇵日本精选",TONTV
-https://live.artidijitalmedya.com/artidijital_tontv/tontv/playlist.m3u8
 #EXTINF:-1 tvg-name="TOUGHJOBS" tvg-logo="https://live.fanmingming.com/tv/TOUGHJOBS.png" group-title="🇯🇵日本精选",TOUGHJOBS
 https://jmp2.uk/plu-65c69bf23ef47d0008583967.m3u8
 #EXTINF:-1 tvg-name="TOWNTV" tvg-logo="https://live.fanmingming.com/tv/TOWNTV.png" group-title="🇯🇵日本精选",TOWNTV
@@ -703,8 +707,6 @@ https://cdn.streamhispanatv.net:3076/live/visiontvlive.m3u8
 https://5ff3d9babae13.streamlock.net/jwagpqxehu/jwagpqxehu/playlist.m3u8
 #EXTINF:-1 tvg-name="VITEBSK" tvg-logo="https://live.fanmingming.com/tv/VITEBSK.png" group-title="🇯🇵日本精选",VITEBSK
 http://46.53.200.153:7777/play/a00h/index.m3u8
-#EXTINF:-1 tvg-name="VOYENTV" tvg-logo="https://live.fanmingming.com/tv/VOYENTV.png" group-title="🇯🇵日本精选",VOYENTV
-http://media1.skifnet.by/voentv/index.m3u8
 #EXTINF:-1 tvg-name="WATANTV" tvg-logo="https://live.fanmingming.com/tv/WATANTV.png" group-title="🇯🇵日本精选",WATANTV
 https://rp.tactivemedia.com/watantv_source/live/playlist.m3u8
 #EXTINF:-1 tvg-name="WATTANTV" tvg-logo="https://live.fanmingming.com/tv/WATTANTV.png" group-title="🇯🇵日本精选",WATTANTV
@@ -791,6 +793,10 @@ http://ares.mnet.mk/hls/mnet.m3u8
 http://ares.mnet.mk/hls/mnet-kids.m3u8
 #EXTINF:-1 tvg-name="MNETSPORT" tvg-logo="https://live.fanmingming.com/tv/MNETSPORT.png" group-title="🇰🇷韩国精选",MNETSPORT
 http://ares.mnet.mk/hls/mnet-sport.m3u8
+#EXTINF:-1 tvg-name="MRTVNEWS" tvg-logo="https://live.fanmingming.com/tv/MRTVNEWS.png" group-title="🇰🇷韩国精选",MRTVNEWS
+https://mrtvott.com/cache/MRTV-NEWS-HD/master.m3u8
+#EXTINF:-1 tvg-name="MRTVNRC" tvg-logo="https://live.fanmingming.com/tv/MRTVNRC.png" group-title="🇰🇷韩国精选",MRTVNRC
+https://mrtvott.com/cache/MRTV-NRC-HD/master.m3u8
 #EXTINF:-1 tvg-name="MUSLIMNETWORKTV" tvg-logo="https://live.fanmingming.com/tv/MUSLIMNETWORKTV.png" group-title="🇰🇷韩国精选",MUSLIMNETWORKTV
 https://afghantv.app/hls2/muslimnetwork/index.m3u8
 #EXTINF:-1 tvg-name="PLUTOTVNATURA" tvg-logo="https://live.fanmingming.com/tv/PLUTOTVNATURA.png" group-title="🇰🇷韩国精选",PLUTOTVNATURA
@@ -930,9 +936,9 @@ https://abcnews-streams.akamaized.net/hls/live/2023568/abcnewshudson9/master.m3u
 #EXTINF:-1 tvg-name="ABCTELESHOW" tvg-logo="https://live.fanmingming.com/tv/ABCTELESHOW.png" group-title="🇺🇸美国精选",ABCTELESHOW
 https://live-evg10.tv360.bitel.com.pe/bitel/abctv/playlist.m3u8
 #EXTINF:-1 tvg-name="ABCTV" tvg-logo="https://live.fanmingming.com/tv/ABCTV.png" group-title="🇺🇸美国精选",ABCTV
-https://c.mjh.nz/abc-nsw.m3u8
-#EXTINF:-1 tvg-name="ABCTV" tvg-logo="https://live.fanmingming.com/tv/ABCTV.png" group-title="🇺🇸美国精选",ABCTV
 https://c.mjh.nz/abc-tv-plus.m3u8
+#EXTINF:-1 tvg-name="ABCTV" tvg-logo="https://live.fanmingming.com/tv/ABCTV.png" group-title="🇺🇸美国精选",ABCTV
+https://c.mjh.nz/abc-nsw.m3u8
 #EXTINF:-1 tvg-name="ABCTVACT" tvg-logo="https://live.fanmingming.com/tv/ABCTVACT.png" group-title="🇺🇸美国精选",ABCTVACT
 https://c.mjh.nz/abc-act.m3u8
 #EXTINF:-1 tvg-name="ABCTVNT" tvg-logo="https://live.fanmingming.com/tv/ABCTVNT.png" group-title="🇺🇸美国精选",ABCTVNT
@@ -975,8 +981,6 @@ https://townnews.g-mana.live/media/027a05c7-43b6-49eb-ad10-a0c0f10a0754/main.m3u
 https://mediaserver.abnvideos.com/streams/abnbiblemovies.m3u8
 #EXTINF:-1 tvg-name="ACNN" tvg-logo="https://live.fanmingming.com/tv/ACNN.png" group-title="🇺🇸美国精选",ACNN
 https://viewmedia7219.bozztv.com/wmedia/viewmedia100/web_014/Stream/playlist.m3u8
-#EXTINF:-1 tvg-name="ALLTIMEMOVIES" tvg-logo="https://live.fanmingming.com/tv/ALLTIMEMOVIES.png" group-title="🇺🇸美国精选",ALLTIMEMOVIES
-https://tvsen6.aynaott.com/a2cKGQtB/index.m3u8
 #EXTINF:-1 tvg-name="ASHARQDISCOVERY" tvg-logo="https://live.fanmingming.com/tv/ASHARQDISCOVERY.png" group-title="🇺🇸美国精选",ASHARQDISCOVERY
 https://svs.itworkscdn.net/asharqdiscoverylive/asharqd.smil/playlist_dvr.m3u8
 #EXTINF:-1 tvg-name="B4UMOVIES" tvg-logo="https://live.fanmingming.com/tv/B4UMOVIES.png" group-title="🇺🇸美国精选",B4UMOVIES
@@ -991,6 +995,8 @@ https://www.dailymotion.com/cdn/live/video/x91c8ww.m3u8?sec=D9OwEfHs-e7O6pQ-qlnR
 https://jmp2.uk/plu-561c5b0dada51f8004c4d855.m3u8
 #EXTINF:-1 tvg-name="CMCUSACOUNTRYMUSICCHANNEL" tvg-logo="https://live.fanmingming.com/tv/CMCUSACOUNTRYMUSICCHANNEL.png" group-title="🇺🇸美国精选",CMCUSACOUNTRYMUSICCHANNEL
 https://hwlive.streamingmediahosting.com/14215-live/0_obd393sh/playlist.m3u8
+#EXTINF:-1 tvg-name="CNBC" tvg-logo="https://live.fanmingming.com/tv/CNBC.png" group-title="🇺🇸美国精选",CNBC
+http://41.205.93.154/CNBC/index.m3u8
 #EXTINF:-1 tvg-name="CNBCARABIYA" tvg-logo="https://live.fanmingming.com/tv/CNBCARABIYA.png" group-title="🇺🇸美国精选",CNBCARABIYA
 https://cnbc-live.akamaized.net/cnbc/master.m3u8
 #EXTINF:-1 tvg-name="CNBCAWAAZ" tvg-logo="https://live.fanmingming.com/tv/CNBCAWAAZ.png" group-title="🇺🇸美国精选",CNBCAWAAZ
@@ -1026,9 +1032,9 @@ https://streaming.onnethn.com/HBO/playlist.m3u8
 #EXTINF:-1 tvg-name="CUSANOITALIATV" tvg-logo="https://live.fanmingming.com/tv/CUSANOITALIATV.png" group-title="🇺🇸美国精选",CUSANOITALIATV
 https://router.xdevel.com/video0s975363-69/stream/playlist.m3u8
 #EXTINF:-1 tvg-name="DISCOVERYCHANNEL" tvg-logo="https://live.fanmingming.com/tv/DISCOVERYCHANNEL.png" group-title="🇺🇸美国精选",DISCOVERYCHANNEL
-http://57.128.231.171:8080/282/index.m3u8
+https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/DISCOVERYCHANNEL/CMAF/index.m3u8
 #EXTINF:-1 tvg-name="DISCOVERYCHANNEL" tvg-logo="https://live.fanmingming.com/tv/DISCOVERYCHANNEL.png" group-title="🇺🇸美国精选",DISCOVERYCHANNEL
-http://stream.mcquack.net/177/index.m3u8
+http://57.128.231.171:8080/282/index.m3u8
 #EXTINF:-1 tvg-name="DISCOVERYCHANNELLATINAMERICA" tvg-logo="https://live.fanmingming.com/tv/DISCOVERYCHANNELLATINAMERICA.png" group-title="🇺🇸美国精选",DISCOVERYCHANNELLATINAMERICA
 http://45.171.64.30:6060/play/a032/index.m3u8
 #EXTINF:-1 tvg-name="DISCOVERYHISTORIA" tvg-logo="https://live.fanmingming.com/tv/DISCOVERYHISTORIA.png" group-title="🇺🇸美国精选",DISCOVERYHISTORIA
@@ -1149,8 +1155,6 @@ http://212.5.144.156:8080/id/index.m3u8
 http://stream.mcquack.net/205/index.m3u8
 #EXTINF:-1 tvg-name="INVESTIGATIONDISCOVERYLATINAMERICASOUTH" tvg-logo="https://live.fanmingming.com/tv/INVESTIGATIONDISCOVERYLATINAMERICASOUTH.png" group-title="🇺🇸美国精选",INVESTIGATIONDISCOVERYLATINAMERICASOUTH
 http://38.65.175.84:8000/play/a0ch/index.m3u8
-#EXTINF:-1 tvg-name="JALSHAMOVIES" tvg-logo="https://live.fanmingming.com/tv/JALSHAMOVIES.png" group-title="🇺🇸美国精选",JALSHAMOVIES
-http://103.185.24.134:3001/JALSHA-MOVIES-HD/index.m3u8
 #EXTINF:-1 tvg-name="KHUSHBOOBANGLA" tvg-logo="https://live.fanmingming.com/tv/KHUSHBOOBANGLA.png" group-title="🇺🇸美国精选",KHUSHBOOBANGLA
 https://cdn.pishow.tv/ott/live/1473/master.m3u8
 #EXTINF:-1 tvg-name="LIKEGECKO)CHROME/124.0.0.0SAFARI/537.36"GROUPTITLE="COMEDY;MOVIES;SERIES",UNIVERSALCOMEDY" tvg-logo="https://live.fanmingming.com/tv/LIKEGECKO)CHROME/124.0.0.0SAFARI/537.36"GROUPTITLE="COMEDY;MOVIES;SERIES",UNIVERSALCOMEDY.png" group-title="🇺🇸美国精选",LIKEGECKO)CHROME/124.0.0.0SAFARI/537.36"GROUPTITLE="COMEDY;MOVIES;SERIES",UNIVERSALCOMEDY
@@ -1349,10 +1353,14 @@ https://mumt04.tangotv.in/m18aqlK4PUBLICMOVIES/index.m3u8
 https://acasmedia3.acangroup.org/qausaintv/qausaintv_output/playlist.m3u8
 #EXTINF:-1 tvg-name="RADIOUSACH" tvg-logo="https://live.fanmingming.com/tv/RADIOUSACH.png" group-title="🇺🇸美国精选",RADIOUSACH
 https://rusach2.janus.cl/playlist/stream.m3u8
+#EXTINF:-1 tvg-name="RAKUTENTVACTIONMOVIES" tvg-logo="https://live.fanmingming.com/tv/RAKUTENTVACTIONMOVIES.png" group-title="🇺🇸美国精选",RAKUTENTVACTIONMOVIES
+https://a9c57ec7ec5e4b7daeacc6316a0bb404.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6069/master.m3u8
 #EXTINF:-1 tvg-name="RAKUTENTVACTIONMOVIESGERMANY" tvg-logo="https://live.fanmingming.com/tv/RAKUTENTVACTIONMOVIESGERMANY.png" group-title="🇺🇸美国精选",RAKUTENTVACTIONMOVIESGERMANY
 https://284824cf70404fdfb6ddf9349009c710.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6066/master.m3u8
 #EXTINF:-1 tvg-name="RAKUTENTVACTIONMOVIESITALY" tvg-logo="https://live.fanmingming.com/tv/RAKUTENTVACTIONMOVIESITALY.png" group-title="🇺🇸美国精选",RAKUTENTVACTIONMOVIESITALY
 https://87f2e2e5e7624e3bad85da1ca2ed31a7.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6067/master.m3u8
+#EXTINF:-1 tvg-name="RAKUTENTVACTIONMOVIESUK" tvg-logo="https://live.fanmingming.com/tv/RAKUTENTVACTIONMOVIESUK.png" group-title="🇺🇸美国精选",RAKUTENTVACTIONMOVIESUK
+https://54045f0c40fd442c8b06df076aaf1e85.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6065/master.m3u8
 #EXTINF:-1 tvg-name="RAKUTENTVCOMEDYMOVIES" tvg-logo="https://live.fanmingming.com/tv/RAKUTENTVCOMEDYMOVIES.png" group-title="🇺🇸美国精选",RAKUTENTVCOMEDYMOVIES
 https://71db867f03ce4d71a29e92155f07ab87.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6180/master.m3u8
 #EXTINF:-1 tvg-name="RAKUTENTVCOMEDYMOVIESGERMANY" tvg-logo="https://live.fanmingming.com/tv/RAKUTENTVCOMEDYMOVIESGERMANY.png" group-title="🇺🇸美国精选",RAKUTENTVCOMEDYMOVIESGERMANY
@@ -1413,6 +1421,8 @@ https://jmp2.uk/plu-6400c228498393000878a9b7.m3u8
 https://live.tele7abc.ro/hls/stream/index.m3u8
 #EXTINF:-1 tvg-name="TOKUSATO" tvg-logo="https://live.fanmingming.com/tv/TOKUSATO.png" group-title="🇺🇸美国精选",TOKUSATO
 https://jmp2.uk/plu-5ff609de50ab210008025c1b.m3u8
+#EXTINF:-1 tvg-name="TOPMOVIESPOLSKA" tvg-logo="https://live.fanmingming.com/tv/TOPMOVIESPOLSKA.png" group-title="🇺🇸美国精选",TOPMOVIESPOLSKA
+https://top-movies-rakuten-tv-pl.fast.rakuten.tv/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6059/master.m3u8
 #EXTINF:-1 tvg-name="TV9NUSANTARA" tvg-logo="https://live.fanmingming.com/tv/TV9NUSANTARA.png" group-title="🇺🇸美国精选",TV9NUSANTARA
 https://5bf7b725107e5.streamlock.net/tv9/tv9/playlist.m3u8
 #EXTINF:-1 tvg-name="TVDIFUSAO" tvg-logo="https://live.fanmingming.com/tv/TVDIFUSAO.png" group-title="🇺🇸美国精选",TVDIFUSAO
